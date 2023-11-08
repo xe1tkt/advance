@@ -2,8 +2,11 @@
 
     function crearTablaContactos()
     {
-        let tabla=document.getElementById('tablaContactos');
-                if(tabla) tabla.remove();
+        //borrar tabla
+        borrarTabla();
+        
+                //loader
+                crearLoader('divContactos');
         google.script.run
         .withSuccessHandler(crearTablaContactosOK)
         .withFailureHandler(crearTablaContactosError)
@@ -12,6 +15,33 @@
 
     }
     
+    function insertarContacto()
+    {
+        let nombre=document.getElementById('nombre').value;
+        let correo=document.getElementById('correo').value;
+        google.script.run
+        .withSuccessHandler(contactoInsertOK)
+        .withFailureHandler(contactoInsertError)
+        .insertarContacto(nombre,correo);
+        borrarTabla();
+    }
+
+    function contactoInsertOK()
+    {
+        document.getElementById('nombre').value='';
+        document.getElementById('correo').value='';
+        creartNotificacionOK('contacto insertado','contacto OK');
+        elimnarLoader();
+        crearTablaContactos();
+    }
+
+    function contactoInsertError()
+    {
+        creartNotificacionError('Error al insertar','tache');
+        elimnarLoader();
+        crearTablaContactos();
+        
+    }
             
     function crearTablaContactosOK(obj)
             { 
@@ -47,6 +77,7 @@
             document.getElementById('divContactos').appendChild(tabla);
                //mostrar notificacion
                creartNotificacionOK('Contactos obtenidos','todo en orden'); 
+               elimnarLoader();
             }
 
             
@@ -55,6 +86,7 @@
     {
         //error not
         creartNotificacionError('No se pueden obtener los datos','Error');
+        elimnarLoader();
     }
 
 function crearNotificacion(mensaje,titulo)
@@ -110,6 +142,31 @@ function crearColorNotificacion(color)
             
 }
 
-        
+function crearLoader(elementoPadre)
+        {
+            elimnarLoader();
+            let loader = document.createElement('div');
+            loader.id='loader';
+            loader.appendChild(document.createElement('div'));
+            loader.appendChild(document.createElement('div'));
+            loader.appendChild(document.createElement('div'));
+            loader.appendChild(document.createElement('div'));
+            loader.classList.add('.lds-ellipsis');
+            document.getElementById(elementoPadre).appendChild(loader);
+
+
+        }
+
+        function elimnarLoader()
+        {
+            let loader = document.getElementById('loader');
+            if (loader) loader.remove();
+        }
+        function borrarTabla()
+        {
+            let tabla=document.getElementById('tablaContactos');
+            if(tabla) tabla.remove();
+
+        }
 
 </script>

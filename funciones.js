@@ -5,6 +5,13 @@ function doGet()
 return HtmlService.createTemplateFromFile('web').evaluate().setTitle('Agenda Gooogle Apps Script');
 
 }
+function doPost(datos)
+{
+    
+    insertarContacto(datos.parameter.nombre,datos.parameter.email);
+    return HtmlService.createTemplateFromFile('web').evaluate().setTitle('Agenda Gooogle Apps Script');
+
+}
 function  obtenerDatosHtml(nombre)
 {
     return HtmlService.createHtmlOutputFromFile(nombre).getContent();
@@ -28,4 +35,8 @@ function importarContactos()
 function insertarContactoJson(contacto)
 {
     HOJA.appendRow([contacto.name.first,contacto.name.last,contacto.email,contacto.phone]);
+}
+function insertarContacto(nombre,correo)
+{
+    HOJA.appendRow([nombre,correo]);
 }

@@ -1,14 +1,30 @@
 <main>
+
+
+  
+    <div class="d-flex justify-content-center my-3">
+      <!--Formulario-->
+<form onsubmit="insertarContacto()" method="dialog" id="formulario">
+
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Introduce Nombre</label>
+    <input type="text" class="form-control" name="nombre" id="nombre">
+
+  </div>
+  <div class="mb-3">
+    <label for="correo" class="form-label">Introduce correo</label>
+    <input type="email" class="form-control" name="correo" id="correo">
+  </div>
     <!--Botones-->
-    <div class="d-flex justify-content-center mb-4">
-        <button class="btn btn-success m-3" onclick="crearTablaContactos()"> 
-            Mostrar Usuarios 
-        </button>
+  <button type="button" class="btn btn-success m-3" onclick="crearTablaContactos()">Mostrar Usuarios</button>
+  <button type="submit" class="btn btn-primary">Crear Contacto</button>
+</form>
         
+
     </div>
     <!-- tabla contactos-->
 
-    <div class="container-sm mb-4 w-50" id="divContactos">
+    <div class="container col-12 col-lh-6 d-flex justify-content-center" id="divContactos">
 
     </div>
 <!-- Notificaciones-->

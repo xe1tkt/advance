@@ -36,7 +36,7 @@ function insertarContactoJson(contacto)
 {
     HOJA.appendRow([contacto.name.first,contacto.name.last,contacto.email,contacto.phone]);
 }
-function insertarContacto(nombre,correo)
+function insertarContacto(nombre,apellidos,correo,telf)
 {
-    HOJA.appendRow([nombre,correo]);
+    HOJA.appendRow([nombre,apellidos,correo,telf]);
 }

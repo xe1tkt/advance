@@ -34,11 +34,11 @@ function importarContactos()
 }
 function insertarContactoJson(contacto)
 {
-    HOJA.appendRow([contacto.name.first,contacto.name.last,contacto.email,contacto.phone]);
+    HOJA.appendRow([contacto.name.first,contacto.name.last,contacto.email,contacto.phone,contacto.picture.medium]);
 }
-function insertarContacto(nombre,apellidos,correo,telf)
+function insertarContacto(nombre,apellidos,correo,telf,imagen)
 {
-    HOJA.appendRow([nombre,apellidos,correo,telf]);
+    HOJA.appendRow([nombre,apellidos,correo,telf,imagen]);
 }
 function borrarContactos(numfila)
 {

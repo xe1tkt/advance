@@ -1,4 +1,19 @@
 <script>
+    //boton subir
+    window.addEventListener('scroll', function () {
+        if (this.window.scrollY > 500) {
+            document.getElementById('botonsubir').style.transform = "scale(1)";
+
+        }
+        if (this.window.scrollY < 500) {
+            document.getElementById('botonsubir').style.transform = "scale(0)";
+
+        }
+    });
+    function subir() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 
     function crearTablaContactos() {
         crearLoader('divContactos');
@@ -59,6 +74,13 @@
                 celda.textContent = celdaActual;
                 fila.appendChild(celda);
 
+                if (isValidUrl(celda.textContent) == true) {
+                    celda.textContent = '';
+                    let imagen = document.createElement('img');
+                    imagen.classList.add('img-fluid', 'rounded');
+                    imagen.src = celdaActual;
+                    celda.appendChild(imagen);
+                }
             });
             if (i == 0) {
                 //agregar opciones
@@ -312,6 +334,7 @@
         notificacion.appendChild(cabeceraNotificacion);
         notificacion.appendChild(cuerpoNotificacion);
 
+
         notificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(color);
         notificacion.addEventListener('hidden.bs.toast', function () { this.remove(); });
 
@@ -324,6 +347,7 @@
         let cuerpoNotificacion = document.createElement('div');
         cuerpoNotificacion.classList.add('toast-body');
         cuerpoNotificacion.textContent = mensaje;
+        crearLotie(cuerpoNotificacion, LOTTIE_PELIGRO);
         return cuerpoNotificacion;
     }
     function crearCabeceraNotificacion(titulo, icono) {
@@ -334,6 +358,7 @@
         tituloNotificacion.classList.add('mx-2');
         tituloNotificacion.textContent = titulo;
         cabeceraNotificacion.appendChild(tituloNotificacion);
+        crearLotie(cabeceraNotificacion, LOTTIE_PELIGRO);
         return cabeceraNotificacion;
 
 
@@ -355,5 +380,35 @@
         notificacion.setAttribute('aria-live', 'assertive');
         notificacion.setAttribute('aria-atomic', 'true');
         return notificacion;
+    }
+
+    const LOTTIE_CHECK = 'https://assets3.lottiefiles.com/private_files/lf30_dfspihm8.json';
+    const LOTTIE_PAPELERA = 'https://assets8.lottiefiles.com/packages/1f20 WcyRdM.json';
+    const LOTTIE_CONTACTO = 'https://assets1.lottiefiles.com/packages/1f20_sOjs8q/add_contact_05.ison';
+    const LOTTIE_ERROR = 'https://assets10.lottiefiles.com/packages/1f20_yw3nyrsv.ison';
+    const LOTTIE_PELIGRO = ' https://assets2.lottiefiles.com/packages/1f20_gbuxqwg.json';
+
+    function crearLotie(contenedor, lottie) {
+        let divAnimacion = document.createElement('div');
+        let Animacion = document.createElement('lottie-player');
+        //atributos
+        Animacion.setAttribute('src', lottie);
+        Animacion.setAttribute('background', 'transparent');
+        Animacion.setAttribute('speed', '1');
+        Animacion.style.width = '3rem';
+        Animacion.style.height = '3rem';
+        Animacion.autoplay = true;
+        divAnimacion.appendChild(Animacion);
+
+
+
+    }
+    function isValidUrl(string) {
+        try {
+            new URL(string);
+            return true;
+        } catch (err) {
+            return false;
+        }
     }
 </script>

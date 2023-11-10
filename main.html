@@ -12,7 +12,7 @@
     </button>
 
   </div>
-  
+
   <!-- tabla contactos-->
 
   <div class="container col-12 col-lh-6 d-flex justify-content-center" id="divContactos">
@@ -22,20 +22,11 @@
   <!-- Notificaciones-->
 
 
-  <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="notificacion" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive"
-      aria-atomic="true">
-
-      <div class="toast-header p-0">
-        <div class="icono-notificacion"><i id="iconoNotificacion"></i></div>
-        <strong class="me-auto" id="tituloNotificacion"></strong>
-        <button type="button" class="btn-close m-2" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-
-      <div class="toast-body" id="mensajeNotificacion">
-
-      </div>
+  <div class="div-notificaciones position-fixed bottom-0 end-0 p-3">
+    <div class="toast-container" id="contenedorNotificaciones">
+      <!--aqui van las notificaciones-->
     </div>
+
   </div>
 
 
@@ -53,26 +44,29 @@
           <div class="modal-body">
             <div class="row mb-3">
 
-            <div class="col-4">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" name="nombre" id="nombre" pattern="[\D]*" title="No debe tener numeros" required>
+              <div class="col-4">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" pattern="[\D]*"
+                  title="No debe tener numeros" required>
+              </div>
+
+              <div class="col-8">
+                <label for="apellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" name="apellidos" id="apellidos" pattern="[\D]*"
+                  title="No debe tener numeros" required>
+              </div>
+
             </div>
+            <div class="input-group mb-3">
 
-            <div class="col-8">
-              <label for="apellidos" class="form-label">Apellidos</label>
-              <input type="text" class="form-control" name="apellidos" id="apellidos"pattern="[\D]*" title="No debe tener numeros" required>
-            </div>          
-
-          </div>
-          <div class="input-group mb-3">
-            
               <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
               <input type="email" class="form-control me-4" name="correo" id="correo" required>
               <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-              <input type="tel" class="form-control" name="telf" id="telf" pattern="[\d]{9,11}" title="Entre 9 y 11 numeros" required>
-           
-          </div>
-           
+              <input type="tel" class="form-control" name="telf" id="telf" pattern="[\d]{9,11}"
+                title="Entre 9 y 11 numeros" required>
+
+            </div>
+
 
 
           </div>

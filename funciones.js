@@ -8,7 +8,7 @@ return HtmlService.createTemplateFromFile('web').evaluate().setTitle('Agenda Goo
 function doPost(datos)
 {
     
-    insertarContacto(datos.parameter.nombre,datos.parameter.email);
+    // insertarContacto(datos.parameter.nombre,datos.parameter.email);
     return HtmlService.createTemplateFromFile('web').evaluate().setTitle('Agenda Gooogle Apps Script');
 
 }
@@ -39,4 +39,15 @@ function insertarContactoJson(contacto)
 function insertarContacto(nombre,apellidos,correo,telf)
 {
     HOJA.appendRow([nombre,apellidos,correo,telf]);
+}
+function borrarContactos(numfila)
+{
+    HOJA.deleteRow(numfila);
+
+}
+function editContacto(numFila,datos)
+{
+    let celdas = HOJA.getRange('A'+numFila+':D'+numFila);
+    celdas.setValues([[datos.nombre, datos.apellidos, datos.correo, datos.telf]]);
+    
 }
